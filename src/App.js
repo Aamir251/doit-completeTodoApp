@@ -1,4 +1,4 @@
-import useAuth from "./hooks/useAuth"
+import { CheckUser } from "./firebase/auth"
 import Features from "./comps/Features"
 import Home from "./comps/Home"
 import Navbar from "./comps/Navbar";
@@ -26,9 +26,9 @@ const RouterSetup = () => {
 
 function App() {
 
-  const { currentUser } = useAuth()
-  console.log(currentUser);
+  const user = CheckUser()
 
+  console.log(user);
   return (
     <RouterSetup />
   );
