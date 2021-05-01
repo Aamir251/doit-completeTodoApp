@@ -1,13 +1,149 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@400;600&family=Raleway:wght@400;700&display=swap');
+
+*{
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+  --primary-color : #F45F5F;
+  --secondary-color: #262626;
+  --background-color : #EBECFB;
+}
+nav {
+  background-color: #D4D0F8;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  height: 8vh;
+}
+ul {
+  list-style: none;
+}
+.navigations {
+  width: 250px;
+
+}
+.icon {
+  font-family: "fredoka one",sans-serif;
+}
+ span {
+  color: var(--primary-color);
+}
+
+.home {
+  height: 50vh;
+  min-height: 250px;
+  
+}
+h1 {
+  font-size: 4rem;
+}
+h4 {
+  font-family: "Raleway", sans-serif;
+  font-size: 1.8rem;
+  color: var(--secondary-color);
+}
+
+h3 {
+  font-family: "Montserrat",sans-serif;
+  color: var(--secondary-color);
+  font-size: 2rem;
+  
+}
+
+.features-section img {
+  max-width: 60%;
+  border-radius: 1rem;
+
+}
+.features-section {
+  position: relative;
+}
+
+label {
+  display: block;
+}
+.form-container {
+  width: 350px;
+  height: 370px;
+  margin: auto auto;
+  font-family: "raleway",sans-serif;
+  line-height: 1.5rem;
+  background-color: white;
+  border-radius: 1rem;
+  z-index: 1000;
+}
+.form-container input {
+  outline: none;
+  border: none;
+  width: 100%;
+  border-bottom: 2px solid var(--background-color);
+  transition: border-bottom .3s  ease-in;
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+}
+.form-container input:focus {
+  border-bottom: 2px solid var(--primary-color);
+}
+/* Utility Class */
+.flex {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.flex-c {
+  flex-direction: column;
+
+}
+.btn {
+  background-color: var(--primary-color);
+  color: whitesmoke;
+  outline: none;
+  font-size: 1.2rem;
+  padding: 0.7rem 0.8rem;
+  border-radius: 8px;
+  border: none;
+}
+.txt-center {
+  text-align: center;
+}
+.grid {
+  max-width: 85vw;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+}
+.mr-top {
+  margin-top: 2rem;
+}
+.bg-color {
+  background-color: var(--background-color);
+}
+.form-section {
+  height: 92vh;
+  position: relative;
+}
+.form-container .flex {
+  justify-content: space-around;
+}
+form {
+  height: 65%;
+
+}
+.txt-left {
+  text-align: left;
+}
+.bg-img {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  min-width: 100%;
+  height: 70%;
+  z-index: -1000;
+}
+.form-section .bg-img{
+  width: 100%;
+  z-index: 0;
 }
