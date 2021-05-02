@@ -1,12 +1,13 @@
-import { CheckUser } from "./firebase/auth"
 import Features from "./comps/Features"
 import Home from "./comps/Home"
 import Navbar from "./comps/Navbar";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Login from "./comps/Login";
+import Form from "./comps/Form";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { AuthProvider } from "./contexts/AuthContext";
+import Dashboard from "./comps/Dashboard";
 
 const RouterSetup = () => {
   return <Router>
@@ -18,7 +19,15 @@ const RouterSetup = () => {
       </Route>
       <Route exact path="/login">
         <Navbar />
-        <Login />
+        <Form formType={'login'} />
+      </Route>
+      <Route exact path="/signup">
+        <Navbar />
+        <Form formType={'signup'} />
+      </Route>
+      <Route exact path="/mydashboard">
+        <Navbar />
+        <Dashboard />
       </Route>
     </Switch>
   </Router>
@@ -26,11 +35,10 @@ const RouterSetup = () => {
 
 function App() {
 
-  const user = CheckUser()
-
-  console.log(user);
   return (
-    <RouterSetup />
+    <AuthProvider>
+      <RouterSetup />
+    </AuthProvider>
   );
 }
 

@@ -20,8 +20,12 @@ nav {
 ul {
   list-style: none;
 }
+.Link {
+  text-decoration: none;
+  color: var(--secondary-color);
+}
 .navigations {
-  width: 250px;
+  width: 350px;
 
 }
 .icon {
@@ -96,6 +100,12 @@ label {
   flex-direction: column;
 
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 4fr ;
+  place-items: center;
+}
 .btn {
   background-color: var(--primary-color);
   color: whitesmoke;
@@ -108,13 +118,13 @@ label {
 .txt-center {
   text-align: center;
 }
-.grid {
+/* .grid {
   max-width: 85vw;
   margin: auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   place-items: center;
-}
+} */
 .mr-top {
   margin-top: 2rem;
 }
@@ -146,4 +156,31 @@ form {
 .form-section .bg-img{
   width: 100%;
   z-index: 0;
+}
+.dashboard-container {
+  height: 92vh;
+}
+.calendar-icon {
+  max-width: 35px;
+}
+aside {
+  background: linear-gradient(276.88deg, #F4F4F4 -1.89%, rgba(238, 230, 255, 0.32) 89.54%);
+}
+aside ul{
+  width: 100%;
+}
+
+.sidebar .flex, .todos .flex {
+  justify-content: space-evenly;
+  margin: 1rem 0;
+}
+
+.todo-container {
+  width: 80%;
+}
+.todos {
+  width: 80%;
+}
+.bullet {
+  width: 50px;
 }
