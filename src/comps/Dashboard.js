@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom"
 import { useAuth } from "../contexts/AuthContext";
 
 import TodoContainer from "../comps/TodoContainer"
-
+import AddTodo from "../comps/AddTodo";
 
 function Dashboard() {
     const history = useHistory()
@@ -15,23 +15,26 @@ function Dashboard() {
     }, [])
 
     return (
-        <section className='grid dashboard-container'>
+        <section className='dashboard-container'>
             <Sidebar currentUser={currentUser} />
             <TodoContainer />
+            <img className='add-icon' src="icons/add-button.png" alt="" />
+
         </section>
     )
 
 }
 
 const Sidebar = ({ currentUser }) => {
-    return <aside className='flex flex-c'>
+    return <aside className="flex flex-c">
         <span>Logged in as {currentUser.email}</span>
-        <ul className='sidebar'>
+        <ul>
             <li className='flex'><img className='calendar-icon' src="icons/today.png" alt="calendar-icon" /> Today</li>
-            <li className='flex'><img className='calendar-icon' src="icons/tomorrow.png" alt="calendar-icon" />Tomorrow</li>
+            <li className='flex'><img className='calendar-icon-tomorrow' src="icons/tomorrow.png" alt="calendar-icon" />Tomorrow</li>
         </ul>
     </aside>
 }
+
 
 
 export default Dashboard

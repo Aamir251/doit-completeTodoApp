@@ -7,7 +7,9 @@ function TodoContainer() {
                 <h2>Sunday</h2>
             </header>
             <ul className='todos'>
-                <li className='flex'> <Bullet /> <Todo /></li>
+                <li className=' grid grid-3'> <Bullet /> <Todo /> <DeleteIcon /></li>
+                <li className=' grid grid-3'> <Bullet /> <Todo /> <DeleteIcon /></li>
+                <li className=' grid grid-3'> <Bullet /> <Todo /> <DeleteIcon /></li>
             </ul>
         </section>
     )
@@ -16,8 +18,12 @@ function TodoContainer() {
 const Todo = () => {
     return (
         <article>
-            {/* // Name of the Todo Goes Here; */}
-            <h4> <span>Attend Meeting</span></h4>
+            <div className='flex'>
+                {/* // Name of the Todo Goes Here; */}
+                <h4> <span>Attend Meeting</span></h4>
+                {/* Time Goes Here */}
+                <p>10 : 00 A.M</p>
+            </div>
             {/* Short Note goes here */}
             <p>Discussion about Page Security</p>
         </article>
@@ -32,7 +38,7 @@ const Bullet = () => {
 
 const DeleteIcon = () => {
     return (
-        <img src="icons/remove.png" alt="" srcset="" />
+        <img className='delete-icon' src="icons/remove.png" alt="" srcset="" />
     )
 }
 export default TodoContainer;

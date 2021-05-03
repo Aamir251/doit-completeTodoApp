@@ -26,7 +26,6 @@ const RouterSetup = () => {
         <Form formType={'signup'} />
       </Route>
       <Route exact path="/mydashboard">
-        <Navbar />
         <Dashboard />
       </Route>
     </Switch>
