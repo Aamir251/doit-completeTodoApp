@@ -17,11 +17,6 @@ export const FirestoreProvider = ({ children }) => {
 
     let [currentTasks, setCurrentTasks] = useState([])
     const { currentUser } = useAuth()
-    function getTasks() {
-
-    }
-
-
 
     useEffect(() => {
 
@@ -43,7 +38,6 @@ export const FirestoreProvider = ({ children }) => {
     }
 
     const value = {
-        getTasks,
         currentTasks,
         addTask
     }

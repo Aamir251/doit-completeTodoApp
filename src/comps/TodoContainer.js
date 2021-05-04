@@ -4,8 +4,6 @@ import { useFirestore } from "../contexts/FirestoreContext";
 function TodoContainer() {
     const { currentTasks } = useFirestore()
 
-    console.log(currentTasks);
-
     return (
         <section className='todo-container'>
             <header>

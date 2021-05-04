@@ -11,7 +11,6 @@ function Dashboard() {
 
     const [showTodoForm, setShowTodoForm] = useState(false)
 
-
     useEffect(() => {
         if (!currentUser) history.push("/login")
     }, [])

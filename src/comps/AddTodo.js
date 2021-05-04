@@ -5,33 +5,34 @@ import TimePicker from 'react-time-picker'
 
 function AddTodo({ showTodoForm, setShowTodoForm }) {
     const [error, setError] = useState('');
-    const formRef = useRef('')
+    const formRef = useRef(null)
     const taskNameRef = useRef(null)
     const taskNoteRef = useRef(null)
     const { addTask } = useFirestore()
-
+    const initialTime = "10:00:00"
+    let timePicked = ''
     const [time, setTime] = useState("10:00:00")
     const handleChange = (value) => {
-        const timePicked = checkTime(value)
-        setTime(timePicked)
+        setTime(value)
+        // setTime(timePicked)
 
     }
 
     const checkTime = (time) => {
         let hour = (time.slice(0, 2))
-        let amPm = hour >= 12 ? 'P.M' : 'A.M'
+        let amPm = (hour >= 12) ? 'P.M' : 'A.M'
 
         hour = hour % 12 || 12
         // Minutes
         let minute = time.slice(3, 5)
-        return (hour < 12) ? `${time}` : `${hour}:${minute} ${amPm}`
+        return `${hour}:${minute}:${amPm}`
 
     }
     const handleSubmit = async (e) => {
         e.preventDefault()
-
-        await addTask(taskNameRef.current.value, taskNoteRef.current.value, time)
-        formRef.current.reset()
+        await addTask(taskNameRef.current.value, taskNoteRef.current.value, checkTime(time))
+        await formRef.current.reset()
+        await setShowTodoForm(false)
     }
 
     const handleClick = (e) => {
@@ -56,7 +57,7 @@ function AddTodo({ showTodoForm, setShowTodoForm }) {
                         <input type="text" id='short-note' name='short-note' ref={taskNoteRef} />
                     </div>
                     <div>
-                        <TimePicker amPmAriaLabel="Select AM PM" disableClock={true} onChange={handleChange} value={time} />
+                        <TimePicker amPmAriaLabel="Select AM PM" disableClock={true} onChange={handleChange} value={initialTime} />
                     </div>
                     <button className='btn'>Add Task</button>
                 </form>

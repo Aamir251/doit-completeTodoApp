@@ -193,9 +193,8 @@ aside.flex {
   justify-content: space-evenly;
   margin: 1rem 0;
 }
-.dashboard-container{
-  
-background-color: #F8F3FF
+.dashboard-container {
+  background-color: #F8F3FF
 }
 .todo-container {
   width: 75vw;
@@ -257,9 +256,14 @@ p {
   background: rgba(0, 0, 0, 0.5);
 }
 
-/* .backdrop .form-container {
-  max-width: 60%;
-  max-height: 80%;
+.backdrop .form-container {
+  box-shadow: 0px 0px 21px 0px rgba(72,62,60,0.56);
 
 
-} */
+  animation: showForm 0.3s ease-out;
+}
+
+@keyframes showForm {
+  from {transform: translateY(100%);}
+  to {transform: translateY(0);}
+}
