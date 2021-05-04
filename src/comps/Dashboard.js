@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useHistory } from "react-router-dom"
 import { useAuth } from "../contexts/AuthContext";
-
+import { FirestoreProvider } from "../contexts/FirestoreContext"
 import TodoContainer from "../comps/TodoContainer"
 import AddTodo from "../comps/AddTodo";
 
@@ -15,12 +15,16 @@ function Dashboard() {
     }, [])
 
     return (
-        <section className='dashboard-container'>
-            <Sidebar currentUser={currentUser} />
-            <TodoContainer />
-            <img className='add-icon' src="icons/add-button.png" alt="" />
+        <FirestoreProvider>
 
-        </section>
+            <section className='dashboard-container'>
+                <Sidebar currentUser={currentUser} />
+                <TodoContainer />
+                <img className='add-icon' src="icons/add-button.png" alt="" />
+
+                <AddTodo />
+            </section>
+        </FirestoreProvider>
     )
 
 }

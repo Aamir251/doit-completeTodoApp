@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useState, useEffect } from "react";
-import { auth } from "../firebase/config"
+import { auth, projectFirestore } from "../firebase/config"
 const AuthContext = React.createContext()
 
 
@@ -12,6 +12,8 @@ export const useAuth = () => {
 // AuthProvider is the Component Name-
 
 export const AuthProvider = ({ children }) => {
+
+
     const [currentUser, setCurrentUser] = useState(null);
     const [loading, setLoading] = useState(true)
     function signUp(email, password) {

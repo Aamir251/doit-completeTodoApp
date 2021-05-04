@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { projectFirestore } from "../firebase/config";
 
 import { useAuth } from "../contexts/AuthContext";
-const { currentUser } = useAuth()
+
 const db = projectFirestore;
 db.settings({ timestampsInSnapshots: true })
 
@@ -12,32 +12,46 @@ export const useFirestore = () => {
     return useContext(FirestoreContext)
 }
 
-const FirestoreProvider = () => {
+export const FirestoreProvider = ({ children }) => {
 
-    const [tasks, setTasks] = useState([])
-    function getTasks(collection_name) {
 
-        db.collection(collection_name).get()
-            .then(snapshot => {
-                snapshot.docs.forEach(doc => {
-                    console.log(doc);
-                })
-            })
+    let [currentTasks, setCurrentTasks] = useState([])
+    const { currentUser } = useAuth()
+    function getTasks() {
+
     }
 
-    function addTask(task) {
-        return db.collection("doit").doc(currentUser.uid).set({
 
-        })
+
+    useEffect(() => {
+
+        db.collection("doit").doc(currentUser.uid).get()
+            .then((doc) => {
+                let documents = []
+                let tasks = doc.data().currentTasks;
+                tasks.forEach(task => {
+                    documents.push(task)
+                });
+                setCurrentTasks(documents)
+            })
+
+    }, [currentTasks])
+
+    function addTask(taskName, shortNote, time) {
+        currentTasks.push({ name: taskName, note: shortNote, time: time })
+        return db.collection("doit").doc(currentUser.uid).set({ currentTasks })
     }
 
     const value = {
-        getTasks
+        getTasks,
+        currentTasks,
+        addTask
     }
-    return <FirestoreContext.Provider value={value}>
-        {children}
-    </FirestoreContext.Provider>
+    return (
+        <FirestoreContext.Provider value={value}>
+            {children}
+        </FirestoreContext.Provider>
+    )
 }
 
 
-export default FirestoreProvider;

@@ -1,31 +1,38 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useFirestore } from "../contexts/FirestoreContext";
 
 function TodoContainer() {
+    const { currentTasks } = useFirestore()
+
+    console.log(currentTasks);
+
     return (
         <section className='todo-container'>
             <header>
                 <h2>Sunday</h2>
             </header>
             <ul className='todos'>
-                <li className=' grid grid-3'> <Bullet /> <Todo /> <DeleteIcon /></li>
-                <li className=' grid grid-3'> <Bullet /> <Todo /> <DeleteIcon /></li>
-                <li className=' grid grid-3'> <Bullet /> <Todo /> <DeleteIcon /></li>
+                {currentTasks.map(task => {
+                    return (
+                        <li className=' grid grid-3'> <Bullet /> <Todo task={task} /> <DeleteIcon /></li>
+                    )
+                })}
             </ul>
         </section>
     )
 }
 
-const Todo = () => {
+const Todo = ({ task }) => {
     return (
         <article>
             <div className='flex'>
                 {/* // Name of the Todo Goes Here; */}
-                <h4> <span>Attend Meeting</span></h4>
+                <h4> <span>{task.name}</span></h4>
                 {/* Time Goes Here */}
-                <p>10 : 00 A.M</p>
+                <p>{task.time}</p>
             </div>
             {/* Short Note goes here */}
-            <p>Discussion about Page Security</p>
+            <p>{task.note}</p>
         </article>
     )
 }
