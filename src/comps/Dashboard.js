@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from "react-router-dom"
 import { useAuth } from "../contexts/AuthContext";
 import { FirestoreProvider } from "../contexts/FirestoreContext"
@@ -9,20 +9,21 @@ function Dashboard() {
     const history = useHistory()
     const { currentUser } = useAuth();
 
+    const [showTodoForm, setShowTodoForm] = useState(false)
+
+
     useEffect(() => {
         if (!currentUser) history.push("/login")
-
     }, [])
-
     return (
         <FirestoreProvider>
 
             <section className='dashboard-container'>
                 <Sidebar currentUser={currentUser} />
                 <TodoContainer />
-                <img className='add-icon' src="icons/add-button.png" alt="" />
+                <img onClick={() => setShowTodoForm(true)} className='add-icon' src="icons/add-button.png" alt="" />
 
-                <AddTodo />
+                {showTodoForm && <AddTodo showTodoForm={showTodoForm} setShowTodoForm={setShowTodoForm} />}
             </section>
         </FirestoreProvider>
     )

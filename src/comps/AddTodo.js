@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useFirestore } from "../contexts/FirestoreContext";
 import TimePicker from 'react-time-picker'
 
-function AddTodo() {
+function AddTodo({ showTodoForm, setShowTodoForm }) {
     const [error, setError] = useState('');
     const formRef = useRef('')
     const taskNameRef = useRef(null)
@@ -29,11 +29,18 @@ function AddTodo() {
     }
     const handleSubmit = async (e) => {
         e.preventDefault()
+
         await addTask(taskNameRef.current.value, taskNoteRef.current.value, time)
         formRef.current.reset()
     }
+
+    const handleClick = (e) => {
+        if (e.target.classList.contains("backdrop")) {
+            setShowTodoForm(false)
+        }
+    }
     return (
-        <section className="todo-form form-section bg-color flex">
+        <section onClick={handleClick} className="backdrop form-section bg-color flex">
             <div className="form-container flex flex-c">
                 <h3 className='txt-center'> <span>Add New Task</span> </h3>
                 {error}
@@ -53,7 +60,6 @@ function AddTodo() {
                     </div>
                     <button className='btn'>Add Task</button>
                 </form>
-
             </div>
         </section>
 
