@@ -23,10 +23,13 @@ export const FirestoreProvider = ({ children }) => {
         db.collection("doit").doc(currentUser.uid).get()
             .then((doc) => {
                 let documents = []
-                let tasks = doc.data().currentTasks;
-                tasks.forEach(task => {
-                    documents.push(task)
-                });
+                if (doc.data().currentTasks) {
+                    let tasks = doc.data().currentTasks;
+                    tasks.forEach(task => {
+                        documents.push(task)
+                    });
+                }
+
                 setCurrentTasks(documents)
             })
 
@@ -37,9 +40,15 @@ export const FirestoreProvider = ({ children }) => {
         return db.collection("doit").doc(currentUser.uid).set({ currentTasks })
     }
 
+    function setTasks(remainingTasks) {
+        currentTasks = remainingTasks
+        return db.collection("doit").doc(currentUser.uid).set({ currentTasks })
+    }
     const value = {
         currentTasks,
-        addTask
+        addTask,
+        setCurrentTasks,
+        setTasks
     }
     return (
         <FirestoreContext.Provider value={value}>

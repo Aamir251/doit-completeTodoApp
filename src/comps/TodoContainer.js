@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useFirestore } from "../contexts/FirestoreContext";
 
 function TodoContainer() {
-    const { currentTasks } = useFirestore()
+    const { currentTasks, setTasks } = useFirestore()
 
     return (
         <section className='todo-container'>
@@ -10,9 +10,13 @@ function TodoContainer() {
                 <h2>Sunday</h2>
             </header>
             <ul className='todos'>
-                {currentTasks.map(task => {
+                {currentTasks.map((task, index) => {
                     return (
-                        <li className=' grid grid-3'> <Bullet /> <Todo task={task} /> <DeleteIcon /></li>
+                        <li className=' grid grid-3'>
+                            <Bullet />
+                            <Todo task={task} />
+                            <DeleteIcon index={index} currentTasks={currentTasks} setTasks={setTasks} />
+                        </li>
                     )
                 })}
             </ul>
@@ -41,9 +45,16 @@ const Bullet = () => {
     )
 }
 
-const DeleteIcon = () => {
+const DeleteIcon = ({ index, currentTasks, setTasks }) => {
+
+    const handleClick = (index) => {
+        alert(index)
+        let newTasks = currentTasks.filter((task, ind) => ind !== index)
+        console.log(newTasks);
+        setTasks(newTasks)
+    }
     return (
-        <img className='delete-icon' src="icons/remove.png" alt="" srcset="" />
+        <img onClick={() => { handleClick(index) }} className='delete-icon' src="icons/remove.png" alt="" srcset="" />
     )
 }
 export default TodoContainer;
