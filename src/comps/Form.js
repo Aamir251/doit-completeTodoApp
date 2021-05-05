@@ -69,7 +69,8 @@ function Form({ formType }) {
                     <button disabled={loading} className='btn'>Go</button>
                 </form>
 
-                <p>No account? <Link to="/signup"><span>Sign Up</span></Link> </p>
+                {(formType === 'signup') ? <p>have an account? <Link to="/login"><span>Log In</span></Link> </p> : <p>No Account <Link to="/signup"><span>Sign Up</span></Link> </p>}
+
 
             </div>
             <img className='bg-img' src="images/wave.png" alt="background image" />

@@ -18,7 +18,10 @@ function TodoContainer({ dateToShow, today, tomorrow }) {
     return (
         <section className='todo-container'>
             <header>
-                <h2> {currentDay()} </h2>
+                <h4 > {currentDay()} </h4>
+                <div className='todays-date flex'>
+                    <h4 >{`${new Date().getUTCDate()}-${new Date().getUTCMonth()}-${new Date().getUTCFullYear()}`} </h4>
+                </div>
             </header>
             <ul className='todos'>
                 {currentTasks.filter(task => task.taskDate === dateToShow).map((task, index) => {
@@ -52,7 +55,7 @@ const Todo = ({ task }) => {
 
 const Bullet = () => {
     return (
-        <img className='bullet' src="icons/bullet.png" alt="list icon" />
+        <img className='bullet shadow' src="icons/bullet.png" alt="list icon" />
     )
 }
 
@@ -64,7 +67,7 @@ const DeleteIcon = ({ currentTasks, setTasks, createdAt }) => {
         setTasks(newTasks)
     }
     return (
-        <img onClick={() => { handleClick(createdAt) }} className='delete-icon' src="icons/remove.png" alt="" srcset="" />
+        <img onClick={() => { handleClick(createdAt) }} className='delete-icon shadow' src="icons/remove.png" alt="" srcset="" />
     )
 }
 export default TodoContainer;

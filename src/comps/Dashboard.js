@@ -54,8 +54,8 @@ const Sidebar = ({ currentUser, today, tomorrow, setDateToShow, dateToShow, logO
     const isTodaySelected = dateToShow === today.getDate()
 
     return <aside className="flex flex-c">
-        <h4>Current User</h4>
-        <span>{currentUser.email}</span>
+        <img className='profile' src="https://www.xeus.com/wp-content/uploads/2014/09/One_User_Orange.png" alt="" />
+        <span className="shadow"><strong>{currentUser && currentUser.email}</strong></span>
         <Link onClick={handleLogout} className="Link btn">Log Out</Link>
         <ul>
             <li onClick={() => setDateToShow(today.getDate())} className={`flex ptr ${isTodaySelected && "bg-white"} `} ><img className='calendar-icon' src="icons/today.png" alt="calendar-icon" /> Today</li>

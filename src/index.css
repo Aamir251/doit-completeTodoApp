@@ -153,6 +153,9 @@ form {
   height: 70%;
   z-index: -1000;
 }
+.form-section {
+  height: 92vh;
+}
 .form-section .bg-img{
   width: 100%;
   z-index: 0;
@@ -164,9 +167,32 @@ form {
 }
 .calendar-icon {
   max-width: 35px;
+
+}
+.shadow {
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
 }
 .calendar-icon-tomorrow {
   width: 25px;
+
+}
+header {
+  height: 20vh;
+}
+.todays-date {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #D4D8FB;
+  width : 10rem;
+  height: 8rem;
+  clip-path: polygon(100% 0, 100% 100%, 10% 77%, 0 0);
+
+
+}
+.profile {
+  width : 120px
 }
 .bg-white {
   background-color: white;
@@ -176,6 +202,7 @@ aside {
   position:fixed;
   height: 80%;
   left: 0;
+  padding : 1rem 2rem;
   background: linear-gradient(276.88deg, #F4F4F4 -1.89%, rgba(238, 230, 255, 0.32) 89.54%);
   font-family: "Raleway",sans-serif;
 }
