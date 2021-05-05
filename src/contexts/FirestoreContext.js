@@ -35,8 +35,8 @@ export const FirestoreProvider = ({ children }) => {
 
     }, [currentTasks])
 
-    function addTask(taskName, shortNote, time, taskDate) {
-        currentTasks.push({ name: taskName, note: shortNote, time: time, taskDate: taskDate })
+    function addTask(taskName, shortNote, time, taskDate, createdAt) {
+        currentTasks.push({ name: taskName, note: shortNote, time: time, taskDate: taskDate, createdAt: createdAt })
 
         return db.collection("doit").doc(currentUser.uid).set({ currentTasks })
     }

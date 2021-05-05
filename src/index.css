@@ -44,7 +44,7 @@ h1 {
   font-size: 4rem;
 }
 h4 {
-  font-family: "Raleway", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 1.8rem;
   color: var(--secondary-color);
 }
@@ -168,11 +168,16 @@ form {
 .calendar-icon-tomorrow {
   width: 25px;
 }
+.bg-white {
+  background-color: white;
+  padding: 0.5rem 0.5rem;
+}
 aside {
   position:fixed;
   height: 80%;
   left: 0;
   background: linear-gradient(276.88deg, #F4F4F4 -1.89%, rgba(238, 230, 255, 0.32) 89.54%);
+  font-family: "Raleway",sans-serif;
 }
 aside ul {
   width: 100%;
@@ -188,7 +193,9 @@ aside li.flex {
 aside.flex {
   justify-content: space-evenly;
 }
-
+.ptr {
+  cursor: pointer;
+}
 .sidebar .flex {
   justify-content: space-evenly;
   margin: 1rem 0;

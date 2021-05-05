@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useFirestore } from "../contexts/FirestoreContext";
-
+import { currentDay } from "../currentDay"
 function TodoContainer({ dateToShow, today, tomorrow }) {
 
 
@@ -18,15 +18,15 @@ function TodoContainer({ dateToShow, today, tomorrow }) {
     return (
         <section className='todo-container'>
             <header>
-                <h2>Sunday</h2>
+                <h2> {currentDay()} </h2>
             </header>
             <ul className='todos'>
-                {tasksToShow.map((task, index) => {
+                {currentTasks.filter(task => task.taskDate === dateToShow).map((task, index) => {
                     return (
                         <li className=' grid grid-3'>
                             <Bullet />
                             <Todo task={task} />
-                            <DeleteIcon index={index} currentTasks={currentTasks} setTasks={setTasks} />
+                            <DeleteIcon createdAt={task.createdAt} currentTasks={currentTasks} setTasks={setTasks} />
                         </li>
                     )
                 })}
@@ -56,16 +56,15 @@ const Bullet = () => {
     )
 }
 
-const DeleteIcon = ({ index, currentTasks, setTasks }) => {
+const DeleteIcon = ({ currentTasks, setTasks, createdAt }) => {
 
-    const handleClick = (index) => {
-        alert(index)
-        let newTasks = currentTasks.filter((task, ind) => ind !== index)
+    const handleClick = (createdAt) => {
+        let newTasks = currentTasks.filter((task) => task.createdAt !== createdAt)
         console.log(newTasks);
         setTasks(newTasks)
     }
     return (
-        <img onClick={() => { handleClick(index) }} className='delete-icon' src="icons/remove.png" alt="" srcset="" />
+        <img onClick={() => { handleClick(createdAt) }} className='delete-icon' src="icons/remove.png" alt="" srcset="" />
     )
 }
 export default TodoContainer;

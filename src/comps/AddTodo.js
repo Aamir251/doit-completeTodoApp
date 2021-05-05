@@ -43,11 +43,11 @@ function AddTodo({ showTodoForm, setShowTodoForm, today, tomorrow }) {
             console.log("Tomorrow date selected");
             // setDate(new Date().getDate())
             // console.log(tomorrow.getDate());
-            tomorrow.setDate(tomorrow.getDate() + 1)
+            // tomorrow.setDate(tomorrow.getDate() + 1)
             taskDate = tomorrow.getDate()
         }
         console.log(taskDate);
-        await addTask(taskNameRef.current.value, taskNoteRef.current.value, checkTime(time), taskDate)
+        await addTask(taskNameRef.current.value, taskNoteRef.current.value, checkTime(time), taskDate, new Date().getTime())
         // await formRef.current.reset()
         await setShowTodoForm(false)
     }

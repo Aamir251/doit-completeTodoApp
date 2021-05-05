@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useHistory } from "react-router-dom"
+import { useHistory, Link } from "react-router-dom"
 import { useAuth } from "../contexts/AuthContext";
 import { FirestoreProvider } from "../contexts/FirestoreContext"
 import TodoContainer from "../comps/TodoContainer"
@@ -9,10 +9,9 @@ function Dashboard() {
     let today = new Date()
     let tomorrow = new Date(today)
     const history = useHistory()
-    const { currentUser } = useAuth();
+    const { currentUser, logOut } = useAuth();
     let [dateToShow, setDateToShow] = useState(today.getDate())
     const [showTodoForm, setShowTodoForm] = useState(false)
-
     useEffect(() => {
         if (!currentUser) history.push("/login")
     }, []);
@@ -24,7 +23,9 @@ function Dashboard() {
                 <Sidebar
                     currentUser={currentUser}
                     setDateToShow={setDateToShow}
+                    dateToShow={dateToShow}
                     today={today}
+                    logOut={logOut}
                     tomorrow={tomorrow} />
 
                 <TodoContainer today={today} tomorrow={tomorrow} dateToShow={dateToShow} />
@@ -39,14 +40,26 @@ function Dashboard() {
 
 }
 
-const Sidebar = ({ currentUser, today, tomorrow, setDateToShow }) => {
+const Sidebar = ({ currentUser, today, tomorrow, setDateToShow, dateToShow, logOut }) => {
+    const history = useHistory()
 
-    tomorrow.setDate(today.getDate() + 1)
+    const handleLogout = async () => {
+        await logOut();
+        history.push("/")
+
+    }
+
+    tomorrow.setDate(today.getDate() + 1);
+
+    const isTodaySelected = dateToShow === today.getDate()
+
     return <aside className="flex flex-c">
-        <span>Logged in as {currentUser.email}</span>
+        <h4>Current User</h4>
+        <span>{currentUser.email}</span>
+        <Link onClick={handleLogout} className="Link btn">Log Out</Link>
         <ul>
-            <li onClick={() => setDateToShow(today.getDate())} className='flex'><img className='calendar-icon' src="icons/today.png" alt="calendar-icon" /> Today</li>
-            <li onClick={() => setDateToShow(tomorrow.getDate())} className='flex'><img className='calendar-icon-tomorrow' src="icons/tomorrow.png" alt="calendar-icon" />Tomorrow</li>
+            <li onClick={() => setDateToShow(today.getDate())} className={`flex ptr ${isTodaySelected && "bg-white"} `} ><img className='calendar-icon' src="icons/today.png" alt="calendar-icon" /> Today</li>
+            <li onClick={() => setDateToShow(tomorrow.getDate())} className={`flex ptr ${!isTodaySelected && "bg-white"} `}><img className='calendar-icon-tomorrow' src="icons/tomorrow.png" alt="calendar-icon" />Tomorrow</li>
         </ul>
     </aside >
 }
