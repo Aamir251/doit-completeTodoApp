@@ -1,8 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import { useFirestore } from "../contexts/FirestoreContext";
 
-function TodoContainer() {
+function TodoContainer({ dateToShow, today, tomorrow }) {
+
+
+    // let dateToShow = dateToShow
     const { currentTasks, setTasks } = useFirestore()
+    const [tasksToShow, setTasksToShow] = useState([])
+
+    useEffect(() => {
+
+        setTasksToShow(currentTasks.filter(task => task.taskDate === dateToShow))
+        console.log(tasksToShow);
+
+    }, [dateToShow])
 
     return (
         <section className='todo-container'>
@@ -10,7 +21,7 @@ function TodoContainer() {
                 <h2>Sunday</h2>
             </header>
             <ul className='todos'>
-                {currentTasks.map((task, index) => {
+                {tasksToShow.map((task, index) => {
                     return (
                         <li className=' grid grid-3'>
                             <Bullet />

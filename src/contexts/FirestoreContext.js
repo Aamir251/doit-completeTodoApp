@@ -23,7 +23,7 @@ export const FirestoreProvider = ({ children }) => {
         db.collection("doit").doc(currentUser.uid).get()
             .then((doc) => {
                 let documents = []
-                if (doc.data().currentTasks) {
+                if (doc.data() !== undefined) {
                     let tasks = doc.data().currentTasks;
                     tasks.forEach(task => {
                         documents.push(task)
@@ -35,8 +35,9 @@ export const FirestoreProvider = ({ children }) => {
 
     }, [currentTasks])
 
-    function addTask(taskName, shortNote, time) {
-        currentTasks.push({ name: taskName, note: shortNote, time: time })
+    function addTask(taskName, shortNote, time, taskDate) {
+        currentTasks.push({ name: taskName, note: shortNote, time: time, taskDate: taskDate })
+
         return db.collection("doit").doc(currentUser.uid).set({ currentTasks })
     }
 

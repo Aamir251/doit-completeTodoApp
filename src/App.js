@@ -11,6 +11,8 @@ import { FirestoreProvider } from "./contexts/FirestoreContext"
 import Dashboard from "./comps/Dashboard";
 
 const RouterSetup = () => {
+
+
   return <Router>
     <Switch>
       <Route exact path="/">

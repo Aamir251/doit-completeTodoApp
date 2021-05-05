@@ -3,15 +3,19 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useFirestore } from "../contexts/FirestoreContext";
 import TimePicker from 'react-time-picker'
 
-function AddTodo({ showTodoForm, setShowTodoForm }) {
+function AddTodo({ showTodoForm, setShowTodoForm, today, tomorrow }) {
     const [error, setError] = useState('');
     const formRef = useRef(null)
     const taskNameRef = useRef(null)
     const taskNoteRef = useRef(null)
+    const dateRef = useRef(null)
     const { addTask } = useFirestore()
     const initialTime = "10:00:00"
+    let taskDate = null;
     let timePicked = ''
     const [time, setTime] = useState("10:00:00")
+
+
     const handleChange = (value) => {
         setTime(value)
         // setTime(timePicked)
@@ -29,11 +33,25 @@ function AddTodo({ showTodoForm, setShowTodoForm }) {
 
     }
     const handleSubmit = async (e) => {
+
         e.preventDefault()
-        await addTask(taskNameRef.current.value, taskNoteRef.current.value, checkTime(time))
-        await formRef.current.reset()
+        if (dateRef.current.value === 'today') {
+            // setDate(new Date().getDate())
+            taskDate = today.getDate()
+        }
+        else if (dateRef.current.value === 'tomorrow') {
+            console.log("Tomorrow date selected");
+            // setDate(new Date().getDate())
+            // console.log(tomorrow.getDate());
+            tomorrow.setDate(tomorrow.getDate() + 1)
+            taskDate = tomorrow.getDate()
+        }
+        console.log(taskDate);
+        await addTask(taskNameRef.current.value, taskNoteRef.current.value, checkTime(time), taskDate)
+        // await formRef.current.reset()
         await setShowTodoForm(false)
     }
+
 
     const handleClick = (e) => {
         if (e.target.classList.contains("backdrop")) {
@@ -58,6 +76,13 @@ function AddTodo({ showTodoForm, setShowTodoForm }) {
                     </div>
                     <div>
                         <TimePicker amPmAriaLabel="Select AM PM" disableClock={true} onChange={handleChange} value={initialTime} />
+                    </div>
+                    <div>
+                        {/* <label htmlFor="date">Choose a Date</label> */}
+                        <select ref={dateRef} name="date" id="date">
+                            <option value="today">Today</option>
+                            <option value="tomorrow">Tomorrow</option>
+                        </select>
                     </div>
                     <button className='btn'>Add Task</button>
                 </form>
