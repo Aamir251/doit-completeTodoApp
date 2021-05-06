@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useFirestore } from "../contexts/FirestoreContext";
 import { currentDay } from "../currentDay"
-function TodoContainer({ dateToShow, today, tomorrow }) {
+function TodoContainer({ dateToShow }) {
 
 
     // let dateToShow = dateToShow
