@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { useAuth } from "../contexts/AuthContext"
 function Form({ formType }) {
@@ -18,7 +18,7 @@ function Form({ formType }) {
         if (formType === 'signup') {
             const password = passwordRef.current.value;
             const confirmPassword = confirmPasswordRef.current.value;
-            if (password != confirmPassword) return setError("Passwords don't match");
+            if (password !== confirmPassword) return setError("Passwords don't match");
 
             try {
                 setError('')

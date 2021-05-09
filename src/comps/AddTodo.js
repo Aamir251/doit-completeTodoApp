@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 
 import { useFirestore } from "../contexts/FirestoreContext";
 import TimePicker from 'react-time-picker'
@@ -12,13 +12,12 @@ function AddTodo({ showTodoForm, setShowTodoForm, today, tomorrow }) {
     const { addTask } = useFirestore()
     const initialTime = "10:00:00"
     let taskDate = null;
-    let timePicked = ''
     const [time, setTime] = useState("10:00:00")
 
 
     const handleChange = (value) => {
         setTime(value)
-        // setTime(timePicked)
+
 
     }
 

@@ -5,9 +5,8 @@ import Navbar from "./comps/Navbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Form from "./comps/Form";
 
-import { useEffect, useState } from "react";
+
 import { AuthProvider } from "./contexts/AuthContext";
-import { FirestoreProvider } from "./contexts/FirestoreContext"
 import Dashboard from "./comps/Dashboard";
 
 const RouterSetup = () => {
