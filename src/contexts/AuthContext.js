@@ -12,8 +12,7 @@ export const useAuth = () => {
 // AuthProvider is the Component Name-
 
 export const AuthProvider = ({ children }) => {
-
-
+  
     const [currentUser, setCurrentUser] = useState(null);
     const [loading, setLoading] = useState(true)
     function signUp(email, password) {
@@ -29,7 +28,7 @@ export const AuthProvider = ({ children }) => {
     }
     useEffect(() => {
         const unSubscribe = auth.onAuthStateChanged(user => {
-            // SetCurrentUser must be before setLoading(false; this is because if we set the 
+            // SetCurrentUser must be before setLoading(false; this is because if we set the
             // loading to false before then our app gets rendered before we set the current user
             // Hence, current user will not be available to our App
             setCurrentUser(user)

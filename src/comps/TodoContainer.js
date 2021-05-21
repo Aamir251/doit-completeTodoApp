@@ -26,9 +26,9 @@ function TodoContainer({ dateToShow }) {
             <ul className='todos'>
                 {currentTasks.filter(task => task.taskDate === dateToShow).map((task, index) => {
                     return (
-                        <li className=' grid grid-3'>
+                        <li key={task.createdAt} className=' grid grid-3'>
                             <Bullet />
-                            <Todo task={task} />
+                            <Todo key={task.createdAt} task={task} />
                             <DeleteIcon createdAt={task.createdAt} currentTasks={currentTasks} setTasks={setTasks} />
                         </li>
                     )

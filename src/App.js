@@ -13,18 +13,16 @@ const RouterSetup = () => {
 
 
   return <Router>
+  <Navbar />
     <Switch>
       <Route exact path="/">
-        <Navbar />
         <Home />
         <Features />
       </Route>
       <Route exact path="/login">
-        <Navbar />
         <Form formType={'login'} />
       </Route>
       <Route exact path="/signup">
-        <Navbar />
         <Form formType={'signup'} />
       </Route>
       <Route exact path="/mydashboard">

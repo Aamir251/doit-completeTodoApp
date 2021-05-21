@@ -38,7 +38,7 @@ ul {
 .home {
   height: 50vh;
   min-height: 250px;
-  
+
 }
 h1 {
   font-size: 4rem;
@@ -53,7 +53,7 @@ h3 {
   font-family: "Montserrat",sans-serif;
   color: var(--secondary-color);
   font-size: 2rem;
-  
+
 }
 
 .features-section img {
@@ -163,7 +163,7 @@ form {
 .dashboard-container {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  height: 90vh;
 }
 .calendar-icon {
   max-width: 35px;
@@ -210,12 +210,12 @@ aside ul {
   width: 100%;
 }
 aside li {
-  
+
   margin: 1rem 0;
 }
 aside li.flex {
   justify-content: space-evenly;
-  
+
 }
 aside.flex {
   justify-content: space-evenly;
